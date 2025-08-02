@@ -520,7 +520,15 @@ const App = () => {
             sx={{
                 width: "100%",
                 minHeight: '100vh',
-                background: `linear-gradient(135deg, #fceabb 0%,  #c88dea 20%, #201d47 100%)`,
+                background: `linear-gradient(
+                    135deg,
+                    #fceabb 0%,
+                    #c88dea 20%,
+                    #b48ae0 40%,
+                    #7b68c4 60%,
+                    #403a78 80%,
+                    #201d47 100%
+                    )`,
                 overflow: 'hidden',
                 position: 'relative',
                 margin: "0 !important"
