@@ -523,10 +523,10 @@ const App = () => {
                 background: `linear-gradient(
                     135deg,
                     #fceabb 0%,
-                    #c88dea 20%,
-                    #b48ae0 40%,
-                    #7b68c4 60%,
-                    #403a78 80%,
+                    #eecde9 15%,
+                    #c88dea 30%,
+                    #6f5aa2 50%,
+                    #403a78 70%,
                     #201d47 100%
                     )`,
                 overflow: 'hidden',
