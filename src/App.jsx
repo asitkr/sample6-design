@@ -520,7 +520,7 @@ const App = () => {
             sx={{
                 width: "100%",
                 minHeight: '100vh',
-                background: `linear-gradient(135deg, #fceabb 10%,  #c88dea 30%, #201d47 100%)`,
+                background: `linear-gradient(135deg, #fceabb 0%,  #c88dea 20%, #201d47 100%)`,
                 overflow: 'hidden',
                 position: 'relative',
                 margin: "0 !important"
@@ -534,7 +534,7 @@ const App = () => {
                     left: 0,
                     right: 0,
                     zIndex: -1,
-                    background: `linear-gradient(to right, rgba(147, 51, 234, 0.2), rgba(236, 72, 153, 0.2))`, // from-purple-600/20 to-pink-600/20
+                    background: `linear-gradient(to right, rgba(147, 51, 234, 0.2), rgba(236, 72, 153, 0.2))`,
                 }}
             />
 
@@ -600,7 +600,7 @@ const App = () => {
                         transition: 'all 1s ease',
                         transitionDelay: '0.5s',
                         opacity: isLoaded ? 1 : 0,
-                        transform: isLoaded ? 'translateX(0)' : 'translateX(2.5rem)', // translate-x-10 = 40px = 2.5rem
+                        transform: isLoaded ? 'translateX(0)' : 'translateX(2.5rem)',
                     }}
                 >
                     <AnimatedOrbit />
