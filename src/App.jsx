@@ -24,9 +24,10 @@ const Header = () => {
                         color: 'black',
                         fontWeight: 'bold',
                         fontSize: '1.8rem',
+                        fontFamily: "Syncopate"
                     }}
                 >
-                    Ciplteam
+                    Nipun
                 </Typography>
             </Box>
 
@@ -105,6 +106,7 @@ const StyledBox = styled(Box)(({ gradient }) => ({
     },
 }));
 
+
 const TalentAvatar = ({ src, name, delay = 0 }) => {
     const [isVisible, setIsVisible] = useState(false);
 
@@ -124,19 +126,15 @@ const TalentAvatar = ({ src, name, delay = 0 }) => {
             }}
         >
             <Box sx={{ position: 'relative', display: 'inline-block' }}>
-                <Tooltip title={name} arrow placement="top">
-                    <StyledBox gradient={gradient}>
-                        {src ? (
-                            <Avatar
-                                src={src}
-                                alt={name}
-                                sx={{ width: '100%', height: '100%' }}
-                            />
-                        ) : (
-                            <span>{name?.charAt(0).toUpperCase() || '?'}</span>
-                        )}
-                    </StyledBox>
-                </Tooltip>
+                <StyledBox>
+                    {src && (
+                        <Avatar
+                            src={src}
+                            alt={name}
+                            sx={{ width: '100%', height: '100%' }}
+                        />
+                    )}
+                </StyledBox>
                 <GlowBox className="glow" gradient={gradient} />
             </Box>
         </Box>
@@ -237,8 +235,8 @@ const AnimatedOrbit = () => {
                 >
                     20k+
                 </Typography>
-                <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)' }}>
-                    Specialists
+                <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)', fontFamily: "Syncopate" }}>
+                    Visitors
                 </Typography>
             </Box>
 
@@ -246,20 +244,51 @@ const AnimatedOrbit = () => {
             {/* Outer */}
             <Box sx={{ position: 'absolute', inset: 0, transform: `rotate(${rotation}deg)` }}>
                 {[
-                    { top: 0, left: '50%', translate: '-50%, -50%', name: 'Sarah', delay: 0 },
-                    { top: '50%', right: 0, translate: '50%, -50%', name: 'Mike', delay: 200 },
-                    { bottom: 0, left: '50%', translate: '-50%, 50%', name: 'Lisa', delay: 400 },
-                    { top: '50%', left: 0, translate: '-50%, -50%', name: 'John', delay: 600 },
-                ].slice(0, 6).map((a, i) => (
+                    {
+                        top: 0,
+                        left: '50%',
+                        translate: '-50%, -50%',
+                        src: 'https://freesvg.org/img/doctor_white_coat.png',
+                        name: 'Doctor',
+                        delay: 0,
+                    },
+                    {
+                        top: '50%',
+                        right: 0,
+                        translate: '50%, -50%',
+                        src: 'https://freesvg.org/img/Machovka_Singing.png',
+                        name: 'Singer',
+                        delay: 200,
+                    },
+                    {
+                        bottom: 0,
+                        left: '50%',
+                        translate: '-50%, 50%',
+                        src: 'https://freesvg.org/img/addon_the_artist.png',
+                        name: 'Artist',
+                        delay: 400,
+                    },
+                    {
+                        top: '50%',
+                        left: 0,
+                        translate: '-50%, -50%',
+                        src: 'https://freesvg.org/img/Engineer-2.png',
+                        name: 'Engineer',
+                        delay: 600,
+                    },
+                ].map((a, i) => (
                     <Box
                         key={i}
                         sx={{
                             position: 'absolute',
-                            ...a,
+                            ...(a.top !== undefined && { top: a.top }),
+                            ...(a.bottom !== undefined && { bottom: a.bottom }),
+                            ...(a.left !== undefined && { left: a.left }),
+                            ...(a.right !== undefined && { right: a.right }),
                             transform: `translate(${a.translate}) rotate(${-rotation}deg)`,
                         }}
                     >
-                        <TalentAvatar name={a.name} delay={a.delay} />
+                        <TalentAvatar name={a.name} delay={a.delay} src={a.src} />
                     </Box>
                 ))}
             </Box>
@@ -276,19 +305,43 @@ const AnimatedOrbit = () => {
                 }}
             >
                 {[
-                    { top: '50%', right: 0, translate: '50%, -50%', name: 'Zoe', delay: 1600 },
-                    { top: '50%', left: 0, translate: '-50%, -50%', name: 'Ryan', delay: 1800 },
-                    { top: 0, left: '50%', translate: '-50%, -50%', name: 'Amy', delay: 2000 },
+                    {
+                        top: '50%',
+                        right: 0,
+                        translate: '50%, -50%',
+                        name: 'Doctor',
+                        src: 'https://cdn-icons-png.flaticon.com/512/3774/3774299.png', // doctor
+                        delay: 1600,
+                    },
+                    {
+                        top: '50%',
+                        left: 0,
+                        translate: '-50%, -50%',
+                        name: 'Engineer',
+                        src: 'https://cdn-icons-png.flaticon.com/512/2720/2720650.png', // engineer
+                        delay: 1800,
+                    },
+                    {
+                        top: 0,
+                        left: '50%',
+                        translate: '-50%, -50%',
+                        name: 'Musician',
+                        src: 'https://freesvg.org/img/shuttle-boosters-colour.png', // musician
+                        delay: 2000,
+                    },
                 ].map((a, i) => (
                     <Box
                         key={i}
                         sx={{
                             position: 'absolute',
-                            ...a,
+                            top: a.top,
+                            left: a.left,
+                            right: a.right,
+                            bottom: a.bottom,
                             transform: `translate(${a.translate}) rotate(${-rotation * 1.3}deg)`,
                         }}
                     >
-                        <TalentAvatar name={a.name} delay={a.delay} />
+                        <TalentAvatar name={a.name} src={a.src} delay={a.delay} />
                     </Box>
                 ))}
             </Box>
@@ -331,59 +384,6 @@ const LoginForm = () => {
             >
                 {({ errors, touched, handleChange, handleBlur }) => (
                     <Form>
-                        {/* <TextField
-                            fullWidth
-                            size="small"
-                            label="Email"
-                            name="email"
-                            type="text"
-                            variant="outlined"
-                            margin="normal"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            error={touched.email && Boolean(errors.email)}
-                            helperText={touched.email && errors.email}
-                            sx={{
-                                fontWeight: 600,
-                                backgroundColor: 'transparent',
-                                '& .MuiInputBase-root': {
-                                    color: 'white',
-                                    caretColor: 'white',
-                                    backgroundColor: 'transparent !important',
-                                },
-                                '& .MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: 'white',
-                                    },
-                                    '&:hover fieldset': {
-                                        borderColor: 'white',
-                                    },
-                                    '&.Mui-focused fieldset': {
-                                        borderColor: 'white',
-                                    },
-                                    '&.Mui-focused': {
-                                        color: 'white',
-                                    },
-                                },
-                                '& input': {
-                                    color: 'white',
-                                    fontSize: "20px",
-                                },
-                                '& .MuiInputLabel-root': {
-                                    color: 'white',
-                                },
-                                '& .MuiInputLabel-root.Mui-focused': {
-                                    color: 'white',
-                                },
-                                '& input:-webkit-autofill': {
-                                    boxShadow: '0 0 0 1000px transparent inset !important',
-                                    WebkitBoxShadow: '0 0 0 1000px transparent inset !important',
-                                    WebkitTextFillColor: 'white !important',
-                                    transition: 'background-color 5000s ease-in-out 0s',
-                                },
-                            }}
-                        /> */}
-
                         <TextField
                             fullWidth
                             size="small"
@@ -497,15 +497,32 @@ const LoginForm = () => {
                                 background: 'black',
                                 color: '#fff',
                                 fontWeight: 'bold',
+                                textTransform: "capitalize"
                             }}
                         >
-                            LOGIN
+                            Login
                         </Button>
                     </Form>
                 )}
             </Formik>
         </Paper>
     );
+};
+
+const heroBackground = {
+    width: "100%",
+    minHeight: "100vh",
+    background: `linear-gradient(
+    160deg,
+    #f7e6d1 0%,     /* light warm peach */
+    #c18ff0 10%,    /* muted lavender */
+    #7e3af2 20%,    /* rich purple */
+    #381c83 40%,    /* deep indigo */
+    #0d0318 80%    /* very dark, near black */
+  )`,
+    position: "relative",
+    overflow: "hidden",
+    margin: 0,
 };
 
 const App = () => {
@@ -517,22 +534,7 @@ const App = () => {
 
     return (
         <Box
-            sx={{
-                width: "100%",
-                minHeight: '100vh',
-                background: `linear-gradient(
-                    135deg,
-                    #fceabb 0%,
-                    #eecde9 15%,
-                    #c88dea 30%,
-                    #6f5aa2 50%,
-                    #403a78 70%,
-                    #201d47 100%
-                    )`,
-                overflow: 'hidden',
-                position: 'relative',
-                margin: "0 !important"
-            }}
+            sx={heroBackground}
         >
             <Box
                 sx={{
